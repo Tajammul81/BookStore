@@ -40,7 +40,9 @@ Run IISExpress on Internet Explorer but should be able to run on any microsoft O
   in small or big letters in search box a user need to click on search button. If the book 
   with specified criteria i.e.letters matches a book the book with title, author, instock
   and price will appear.
-  A user can click on "Add to cart". Once clicked the cart will show one item added. 
+  A user can click on "Add to cart". Once clicked the cart will show one item added. A user
+  get directed to the store book page.
+
   A user may want to buy more books, a click on "Back to store" will lead a user to the
   book store and Add to cart will keep adding books to the cart.  
   In case if a user want to scroll up and down he can also add books to the cart 
@@ -63,15 +65,31 @@ Run IISExpress on Internet Explorer but should be able to run on any microsoft O
   will get updated. If a user want to continue shopping, he/she can click on back to store
   and can add more books to the cart.
 
- Technicality: As the inStock and other attributes are provided to me in hard coded format,
- first I convert the given Json to string and then put them in a List. In order to update
- the instock value I used the session cookies. That enabled me to update the stock as per 
- add to cart or remove from cart.
+ Technicality and architecture
+ First opening the visual studio 2017, in file choosing new then project and then ASP.net
+ Application and select web on the left side(if not being selected). Name the project and 
+ by clicking ok a small window appears where empty is selected, down clicking both mvc and
+ web api as checklist.
+ 
+ This project does not contain any data store folder as I have been provided with a Json 
+ which is converted it into a String and then put it in a List.
+
+ Architecture contains an interface folder where I created the interfaces and then in
+ Controller folder I created the necessary controller i.e. Store Controller. For modeling 
+ I created a class and for services I created a service folder where I added the bookstoreservices
+ class. For views I have two views one for index(book store) and Cart view. 
+ 
+
+ As the inStock and other attributes are provided to me in hard coded format,
+ first I take the Json as a string and then deserialize objects by jsonconvert and
+ put them into the List.In order to update the instock value I used the session cookies. 
+ That enabled me to update the stock as per add to cart or remove from cart.
  
  The instruction for the task are focusing on the back end. I could have opted to add a
  little bit of graphics with the help of CSS and may have used angular and jquery etc. 
- However, that may have taken me more time. I am using the view with HTML@ that help me to
- add the backend functionality at ease.
+ However, that may have taken me more time and being advised that assume that frontend
+ can be repaceable.I am using the view with HTML@ that help me to add the backend 
+ functionality at ease.
 
  Comments are added where I feel they were needed.
  
@@ -80,5 +98,6 @@ Run IISExpress on Internet Explorer but should be able to run on any microsoft O
 
 Run
   ===========================================================
-  Unit tests are not provided but can be added easily. Perhaps with more profound frontend
-  with Javascript(Angular JS) may would have required to test the logic.
+  Unit tests are not provided but can be added easily as I personally did not feel the
+  need of them.Perhaps with more profound frontend with Javascript(Angular JS) may 
+  would have required to test the logic.

@@ -19,6 +19,11 @@ namespace BookStore.Controllers
             if(Session["Stock"] != null)
             {
                 allStock = Session["Stock"] as List<Book>;
+                // Keeping the search with each session
+                if(!string.IsNullOrEmpty(searchString))
+                {
+                    allStock = allStock.Where(B => B.Title.ToLower().Contains(searchString) || B.Author.ToLower().Contains(searchString)).ToList();
+                }
             }
             else
             {

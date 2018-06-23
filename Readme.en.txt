@@ -36,9 +36,10 @@ Run IISExpress on Internet Explorer but should be able to run on any microsoft O
   will be promoted to the page with a search box. At first glance the user will be
   able to see all the books details, title, author, instock, price and Add to cart
   option. A small search box will also appear on top.The user can either search a book
-  by Title or Author by entering at least three or more letters.After writing letters i.e. either in small or big letters in 
-  search box a user need to click on search button. If the book with specified criteria i.e. 
-  letters matches a book the book with title, author, instock and price will appear.
+  by Title or Author by entering at least one or more letters.After writing letters i.e. either 
+  in small or big letters in search box a user need to click on search button. If the book 
+  with specified criteria i.e.letters matches a book the book with title, author, instock
+  and price will appear.
   A user can click on "Add to cart". Once clicked the cart will show one item added. 
   A user may want to buy more books, a click on "Back to store" will lead a user to the
   book store and Add to cart will keep adding books to the cart.  

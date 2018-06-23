@@ -66,6 +66,7 @@ Run IISExpress on Internet Explorer but should be able to run on any microsoft O
   and can add more books to the cart.
 
  Technicality and architecture
+ ==========================================================
  First opening the visual studio 2017, in file choosing new then project and then ASP.net
  Application and select web on the left side(if not being selected). Name the project and 
  by clicking ok a small window appears where empty is selected, down clicking both mvc and

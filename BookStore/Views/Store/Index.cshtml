@@ -1,0 +1,56 @@
+﻿@using BookStore.Models
+
+@model IEnumerable<Book>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+
+    @{
+        List<Book> cart = new List<Book>();
+
+        if (Session["cart"] != null)
+        {
+            cart = Session["cart"] as List<Book>;
+        }
+    }
+
+    @Html.ActionLink("cart (" + cart.Count + ")", "ViewCart")
+
+    @if (string.IsNullOrEmpty(Request.QueryString["searchString"]))
+    {
+        using (Html.BeginForm("searchStore", "Store", FormMethod.Post))
+        {
+            @:Search: <input type="search" name="searchString" /><button type="submit">Search</button>
+        }
+    }
+    else
+    {
+        @Html.ActionLink("Back to store", "Index")
+    }
+
+    @foreach (Book thisBook in Model)
+    {
+        <div style="margin:5px; border: 1px solid gray;">
+            Title : @thisBook.Title<br />
+            Author : @thisBook.Author<br />
+            inStock : @thisBook.inStock<br />
+            Price : @thisBook.Price.ToString("C2")<br />
+            @if (thisBook.inStock > 0)
+            {
+                @Html.ActionLink("Add to Cart", "AddToCart", new { Title = thisBook.Title, Author = thisBook.Author, inStock = thisBook.inStock, Price = thisBook.Price })
+            }
+        </div>
+    }
+
+</body>
+</html>

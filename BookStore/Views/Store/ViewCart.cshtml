@@ -1,0 +1,84 @@
+﻿@using BookStore.Models
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ViewCart</title>
+</head>
+<body>
+    <div>
+        @Html.ActionLink("Back to store", "Index")
+        <br /><br />
+        @{
+            List<Book> Cart = new List<Book>();
+            bool HasOutOfStockItem = false;
+
+            if (Session["Cart"] != null)
+            {
+                Cart = Session["Cart"] as List<Book>;
+                HasOutOfStockItem = Cart.Where(B => B.inStock == 0).FirstOrDefault() != null;
+            }
+            else
+            {
+                Response.Redirect(Url.Action("Index"));
+            }
+        }
+
+        @if(Cart.Count > 0)
+        {
+            <table style="width:100%;" cellpadding="5" border="1">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Price</th>
+                        <th>InStock</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(Book CartBook in Cart)
+                    {
+                        <tr style="background-color:@(CartBook.inStock == 0 ? "red": "");">
+                            <td>@CartBook.Title</td>
+                            <td>@CartBook.Author</td>
+                            <td>@CartBook.Price.ToString("C2")</td>
+                            <td>@CartBook.inStock</td>
+                            <td>@Html.ActionLink("Remove from Cart", "RemoveFromCart", new { Title = CartBook.Title, Author = CartBook.Author, inStock = CartBook.inStock, Price = CartBook.Price })</td>
+                        </tr>
+                    }
+                    @if (HasOutOfStockItem)
+                    {
+                        <tr>
+                            <td colspan="5">
+                                <strong>Certain books are out of stock in cart</strong>
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="2" align="right">
+                                <strong>Total:</strong>
+                            </td>
+                            <td colspan="3">
+                                <strong>@Cart.Sum(B => B.Price).ToString("C2")</strong>
+                            </td>
+                        </tr>
+                    }
+                </tbody>  
+            </table>
+        }
+        else
+        {
+            <strong>no item in cart</strong><br />
+        }
+    </div>
+</body>
+</html>
